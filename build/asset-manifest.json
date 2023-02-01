@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/StacO/static/css/main.1c264ed9.css",
+    "main.js": "/StacO/static/js/main.3ac2828a.js",
+    "static/js/787.6e075ec6.chunk.js": "/StacO/static/js/787.6e075ec6.chunk.js",
+    "static/media/stackoverflow-icon.webp": "/StacO/static/media/stackoverflow-icon.c5ba0f897fe7c43bb96c.webp",
+    "index.html": "/StacO/index.html",
+    "main.1c264ed9.css.map": "/StacO/static/css/main.1c264ed9.css.map",
+    "main.3ac2828a.js.map": "/StacO/static/js/main.3ac2828a.js.map",
+    "787.6e075ec6.chunk.js.map": "/StacO/static/js/787.6e075ec6.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1c264ed9.css",
+    "static/js/main.3ac2828a.js"
+  ]
+}

@@ -45,6 +45,7 @@
 .question-wrapper {
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .question-container {

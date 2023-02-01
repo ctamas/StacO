@@ -99,6 +99,9 @@ function App() {
   }
 
   const handleSearch = (event) => {
+    if(showUser) {
+      handleClickUser('');
+    }
     if (event.target.value !== searchQuery) {
       setSearchQuery(event.target.value)
     }
