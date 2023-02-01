@@ -194,6 +194,8 @@
   cursor: pointer;
 }
 
+/* Results */
+
 #results-text {
   white-space: nowrap;
   margin-left: 12px;

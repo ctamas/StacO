@@ -10,23 +10,30 @@ function App() {
   const [initialized, setInitialized] = React.useState(false);
   const [questions, setQuestions] = React.useState({ items: [] });
   const [searchQuery, setSearchQuery] = React.useState('blazor');
-  const [showUser, setShowUser] = React.useState('');
-  const [userQuestions, setUserQuestions] = React.useState('');
-  const [userAnswers, setUserAnswers] = React.useState('');
-  const [userTags, setUserTags] = React.useState('');
+  const [searchInput, setSearchInput] = React.useState('blazor');
+  const [showUser, setShowUser] = React.useState(false);
+  const [userQuestions, setUserQuestions] = React.useState(false);
+  const [userAnswers, setUserAnswers] = React.useState(false);
+  const [userTags, setUserTags] = React.useState(false);
   const [currentPage, setCurrentPage] = React.useState(1);
-  const [pagable, setPagable] = React.useState(false);
+  const [pageable, setPageable] = React.useState(false);
 
   const loadResults = (query, page = currentPage) => {
     fetch("https://api.stackexchange.com/2.3/search?key=" + API_KEY + "&order=desc&sort=activity&intitle=" + query + "&site=stackoverflow&page=" + page)
       .then(res => res.json())
       .then(
-        result => {
+        result => { 
+          // Create human readable time format from integer
           result.items.map((item) => {
             return item.creation_date = new Date(item.creation_date * 1000).toDateString();
           })
-          setPagable(result.has_more);
+          setPageable(result.has_more);
           setQuestions(result);
+          // searchQuery is the most recent search, while searchInput is the content of the search bar
+          setSearchInput(query);
+          setSearchQuery(query);
+          setCurrentPage(page);
+          handleClickUser(false);
         }
       );
   };
@@ -81,6 +88,7 @@ function App() {
       );
   };
 
+  // Run one time for the default search word
   if (!initialized) {
     setInitialized(true);
     loadResults(searchQuery);
@@ -90,21 +98,26 @@ function App() {
     if (event && event.preventDefault) {
       event.preventDefault();
     }
-    if (page) {
-      setCurrentPage(page);
-    }
-    if (searchQuery) {
-      loadResults(searchQuery, page);
+    // Go back to default page when submitting new search
+    setCurrentPage(page);
+    if (searchInput) {
+      loadResults(searchInput, page);
     }
   }
 
   const handleSearch = (event) => {
-    if(showUser) {
-      handleClickUser('');
+    // Update the content of the input
+    if (event.target.value !== setSearchInput) {
+      setSearchInput(event.target.value)
     }
-    if (event.target.value !== searchQuery) {
-      setSearchQuery(event.target.value)
-    }
+  }
+
+  const handleNext = () => {
+    loadResults(searchQuery, currentPage + 1)
+  }
+
+  const handlePrevious = () => {
+    loadResults(searchQuery, currentPage - 1)
   }
 
   const handleClickUser = (user) => {
@@ -112,7 +125,8 @@ function App() {
       window.scrollTo({ top: 0, behavior: 'smooth' })
       loadUser(user);
     } else {
-      setShowUser('');
+      // A falsy value will close the user profile view
+      setShowUser(false);
     }
   }
 
@@ -122,7 +136,7 @@ function App() {
         <img id='app-logo' src={logo} width='64' high='64' alt='Stack logo' />
         <form className='full-width' onSubmit={handleSubmit}>
           <div className='flex-center full-width'>
-            <input type="text" id="search-bar" onChange={handleSearch} value={searchQuery}></input>
+            <input type="text" id="search-bar" onChange={handleSearch} value={searchInput}></input>
             <button id='search-button' onClick={() => handleSubmit}>
               <img id='search-glass' src={glass} width='32' high='32' alt='Magnifying glass' />
             </button>
@@ -138,19 +152,19 @@ function App() {
           <div>
             <div className='results-navigator flex-center'>
               <div id='results-text'>
-                Results: {questions.items && questions.items.length}{pagable && ('+')}
+                Results: {questions.items && questions.items.length}{pageable && ('+')}
               </div>
               <div id='results-page-text'>
-                {pagable && ('Page ' + currentPage)}
+                {pageable && ('Page ' + currentPage)}
               </div>
               <div className='flex-center'>
                 {(currentPage > 1) && (
-                  <button onClick={(e) => handleSubmit(e, currentPage - 1)} className='question-meta-token question-user-token'>
+                  <button onClick={handlePrevious} className='question-meta-token question-user-token'>
                     Previous
                   </button>
                 )}
-                {pagable && (
-                  <button onClick={(e) => handleSubmit(e, currentPage + 1)} className='question-meta-token question-user-token'>
+                {pageable && (
+                  <button onClick={handleNext} className='question-meta-token question-user-token'>
                     Next
                   </button>
                 )}

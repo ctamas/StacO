@@ -2,7 +2,6 @@ import * as React from 'react';
 import '../App.css';
 
 function Questions(props) {
-
   return (
     <div className='question-wrapper'>
       {props.questions.items && props.questions.items.map((question, index) => {
