@@ -1,3 +1,6 @@
+
+Live at https://ctamas.github.io/StacO/
+
 Sample app using stackoverflow api: https://api.stackexchange.com/docs
 
 Features: 
@@ -5,7 +8,6 @@ Features:
 - User profiles
 - Responsive design 
 
-Live at https://ctamas.github.io/StacO/
 
 # Getting Started with Create React App
 
