@@ -28,7 +28,7 @@ function Questions(props) {
                   {question.owner.display_name}
                 </button>
               </div>
-              <div className='question-tag' dangerouslySetInnerHTML={{ __html: question.title}}>
+              <div className='question-tag hover-underline' dangerouslySetInnerHTML={{ __html: question.title}} onClick={() => props.handleClickTitle(question.question_id)} >
               </div>
             </div>
             <div>

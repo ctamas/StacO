@@ -12,14 +12,13 @@
 #app-content {
   margin-top: 100px;
   padding: 12px;
-
 }
 
 @media screen and (max-width: 600px) {
   .app {
     font-size: 0.8rem;
   }
-
+  
   #app-content {
     padding: 8px;
   }
@@ -27,6 +26,23 @@
 
 #app-logo {
   filter: invert(1);
+}
+
+/* Post */
+
+#post-containter {
+  border: lightgrey 1px solid;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px;
+}
+
+#post-title-style {
+  margin: 12px 0 24px;
+}
+
+.post-answer {
+  margin-top: 32px;
 }
 
 /* General */
@@ -38,6 +54,10 @@
 .flex-center {
   display: flex;
   align-items: center;
+}
+
+.hover-underline:hover {
+  text-decoration: underline;
 }
 
 /* Question */

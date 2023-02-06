@@ -3,6 +3,7 @@ import glass from './magnifying-glass.png';
 import * as React from 'react';
 import './App.css';
 import Questions from './components/Questions';
+import Post from './components/Post';
 import User from './components/User';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
   const [showUser, setShowUser] = React.useState(false);
   const [userQuestions, setUserQuestions] = React.useState(false);
   const [userAnswers, setUserAnswers] = React.useState(false);
+  const [currentPost, setCurrentPost] = React.useState(false);
   const [userTags, setUserTags] = React.useState(false);
   const [currentPage, setCurrentPage] = React.useState(1);
   const [pageable, setPageable] = React.useState(false);
@@ -32,7 +34,20 @@ function App() {
           setSearchInput(query);
           setSearchQuery(query);
           setCurrentPage(page);
+          // Close user and post views
+          setCurrentPost(false);
           handleClickUser(false);
+        }
+      );
+  };
+
+  const loadPost = (query) => {
+    fetch("https://api.stackexchange.com/2.3/questions/" + query + "?order=desc&sort=votes&site=stackoverflow&filter=!6Wfm_gSyiPy)i&key=" + API_KEY)
+      .then(res => res.json())
+      .then(
+        result => {
+          console.log('result ', result);
+          setCurrentPost(result.items[0]);
         }
       );
   };
@@ -129,6 +144,12 @@ function App() {
     }
   }
 
+  const handleClickTitle = (post) => {
+    console.log('clicked');
+    // if (post.question_id != currentPost.question_id) {
+    loadPost(post);
+  }
+
   return (
     <div className='app'>
       <div id="search-bar-container">
@@ -143,11 +164,14 @@ function App() {
         </form>
       </div>
       <div id='app-content'>
-        {!!showUser && (
+        {currentPost && (
+          <Post setCurrentPost={setCurrentPost} currentPost={currentPost}></Post>
+        )}
+        {!currentPost && !!showUser && (
           <User showUser={showUser} handleClickUser={handleClickUser} userQuestions={userQuestions} userAnswers={userAnswers} userTags={userTags}>
           </User>
         )}
-        {!showUser && (
+        {!currentPost && !showUser && (
           <div>
             <div className='results-navigator flex-center'>
               <div id='results-text'>
@@ -169,7 +193,7 @@ function App() {
                 )}
               </div>
             </div>
-            <Questions questions={questions} handleClickUser={handleClickUser}></Questions>
+            <Questions questions={questions} handleClickUser={handleClickUser} handleClickTitle={handleClickTitle}></Questions>
           </div>
         )}
       </div>
