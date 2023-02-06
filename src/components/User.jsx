@@ -57,7 +57,7 @@ function User(props) {
           <span className='user-title'>
             Questions
           </span>
-          <Questions questions={props.userQuestions} handleClickUser={props.handleClickUser}></Questions>
+          <Questions questions={props.userQuestions} handleClickTitle={props.handleClickTitle} handleClickUser={props.handleClickUser}></Questions>
         </React.Fragment>
       )}
       {props.userAnswers.items && !!props.userAnswers.items.length && (
@@ -65,7 +65,7 @@ function User(props) {
           <span className='user-title'>
             Answers
           </span>
-          <Questions questions={props.userAnswers} handleClickUser={props.handleClickUser}></Questions>
+          <Questions questions={props.userAnswers} handleClickTitle={props.handleClickTitle} handleClickUser={props.handleClickUser}></Questions>
         </React.Fragment>
       )}
     </div>

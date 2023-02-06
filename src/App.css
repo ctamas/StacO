@@ -38,7 +38,7 @@
 }
 
 #post-title-style {
-  margin: 12px 0 24px;
+  margin: 16px 0 24px;
 }
 
 .post-answer {
@@ -58,6 +58,10 @@
 
 .hover-underline:hover {
   text-decoration: underline;
+}
+
+hr {
+  margin: 32px 0;
 }
 
 /* Question */

@@ -46,7 +46,6 @@ function App() {
       .then(res => res.json())
       .then(
         result => {
-          console.log('result ', result);
           setCurrentPost(result.items[0]);
         }
       );
@@ -62,6 +61,7 @@ function App() {
           loadUserAnswers(query);
           loadUserQuestions(query);
           loadUserTags(query);
+          setCurrentPost(false);
         }
       );
   };
@@ -145,8 +145,7 @@ function App() {
   }
 
   const handleClickTitle = (post) => {
-    console.log('clicked');
-    // if (post.question_id != currentPost.question_id) {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
     loadPost(post);
   }
 
@@ -168,7 +167,7 @@ function App() {
           <Post setCurrentPost={setCurrentPost} currentPost={currentPost}></Post>
         )}
         {!currentPost && !!showUser && (
-          <User showUser={showUser} handleClickUser={handleClickUser} userQuestions={userQuestions} userAnswers={userAnswers} userTags={userTags}>
+          <User showUser={showUser} handleClickUser={handleClickUser} handleClickTitle={handleClickTitle} userQuestions={userQuestions} userAnswers={userAnswers} userTags={userTags}>
           </User>
         )}
         {!currentPost && !showUser && (
