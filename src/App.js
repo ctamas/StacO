@@ -7,10 +7,9 @@ import User from './components/User';
 
 function App() {
   const API_KEY = 'HrvsqjzARWE0*0ZfoaXsLw((';
-  const [initialized, setInitialized] = React.useState(false);
   const [questions, setQuestions] = React.useState({ items: [] });
-  const [searchQuery, setSearchQuery] = React.useState('blazor');
-  const [searchInput, setSearchInput] = React.useState('blazor');
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const [searchInput, setSearchInput] = React.useState('');
   const [showUser, setShowUser] = React.useState(false);
   const [userQuestions, setUserQuestions] = React.useState(false);
   const [userAnswers, setUserAnswers] = React.useState(false);
@@ -22,7 +21,7 @@ function App() {
     fetch("https://api.stackexchange.com/2.3/search?key=" + API_KEY + "&order=desc&sort=activity&intitle=" + query + "&site=stackoverflow&page=" + page)
       .then(res => res.json())
       .then(
-        result => { 
+        result => {
           // Create human readable time format from integer
           result.items.map((item) => {
             return item.creation_date = new Date(item.creation_date * 1000).toDateString();
@@ -89,10 +88,10 @@ function App() {
   };
 
   // Run one time for the default search word
-  if (!initialized) {
-    setInitialized(true);
-    loadResults(searchQuery);
-  }
+  React.useEffect(() => {
+    loadResults('blazor');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSubmit = (event, page = 1) => {
     if (event && event.preventDefault) {
