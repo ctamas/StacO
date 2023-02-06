@@ -1,3 +1,14 @@
+
+Live at https://ctamas.github.io/StacO/
+
+Sample app using stackoverflow api: https://api.stackexchange.com/docs
+
+Features: 
+- Search
+- User profiles
+- Responsive design 
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
