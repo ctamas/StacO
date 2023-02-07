@@ -8,7 +8,7 @@ function Questions(props) {
         return (
           <div key={index} className='question-container'>
             <div>
-              <div>
+              <div className='flex-center'>
                 <span className='question-meta-token question-tag'>
                   {question.score + ' votes'}
                 </span>
