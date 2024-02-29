@@ -104,7 +104,7 @@ function App() {
 
   // Run one time for the default search word
   React.useEffect(() => {
-    loadResults('blazor');
+    loadResults('typescript');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -153,6 +153,7 @@ function App() {
     <div className='app'>
       <div id="search-bar-container">
         <img id='app-logo' src={logo} width='64' high='64' alt='Stack logo' />
+        <div id='title-container'>Search Stack Overflow</div>
         <form className='full-width' onSubmit={handleSubmit}>
           <div className='flex-center full-width'>
             <input type="text" id="search-bar" onChange={handleSearch} value={searchInput}></input>
