@@ -96,6 +96,19 @@ code {
   line-break: anywhere;
 }
 
+.button-style {
+  padding: 6px 8px 6px;
+  border: 1px white solid;
+  border-radius: 8px;
+  background-color: transparent;
+  color: white;
+  margin-right: 8px;
+}
+
+.button-style:hover {
+  text-decoration: underline;
+}
+
 /* Question */
 
 .question-wrapper {
@@ -123,31 +136,40 @@ code {
 }
 
 .question-answered {
-  background-color: rgb(1, 88, 1);
+  background: rgb(37, 92, 61) !important;
 }
 
 .question-meta-token {
   padding: 2px 8px 4px;
-  margin-right: 12px;
-  border: 1px white solid;
+  margin: 0 12px 12px 0;
   border-radius: 8px;
   display: inline-block;
+  background: darkslategrey;
 }
 
+.question-counter-token {
+  padding: 4px 12px 6px;
+  margin: 8px 12px 0 0;
+  border: 1px white solid;
+  background: none;
+}
+
+
 .question-user-token {
-  text-decoration: underline;
   background-color: transparent;
   color: white;
-  padding: 6px 8px 6px;
+  font-weight: bold;
 }
 
 .question-tag {
-  margin-bottom: 12px;
+  margin: 12px 0;
   overflow-wrap: anywhere;
+  font-weight: 500;
+  font-size: larger;
 }
 
 .question-user-token:hover {
-  background-color: gray;
+  text-decoration: underline;
 }
 
 /* User */
@@ -262,6 +284,7 @@ code {
 
 .results-navigator {
   margin-bottom: 8px;
+  height: 30px;
 }
 
 #results-page-text {

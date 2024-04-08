@@ -182,12 +182,12 @@ function App() {
               </div>
               <div className='flex-center'>
                 {(currentPage > 1) && (
-                  <button onClick={handlePrevious} className='question-meta-token question-user-token'>
+                  <button onClick={handlePrevious} className='button-style'>
                     Previous
                   </button>
                 )}
                 {pageable && (
-                  <button onClick={handleNext} className='question-meta-token question-user-token'>
+                  <button onClick={handleNext} className='button-style'>
                     Next
                   </button>
                 )}

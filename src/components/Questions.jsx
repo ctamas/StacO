@@ -8,44 +8,44 @@ function Questions(props) {
         return (
           <div key={index} className='question-container'>
             <div>
-              <div className='flex-center'>
-                <span className='question-meta-token question-tag'>
-                  {question.score + ' votes'}
-                </span>
-                {!question.answer_id && (
-                  <span className={'question-meta-token question-tag' + (question.is_answered ? ' question-answered' : '')}>
-                    {question.answer_count + ' answers '}
-                    {question.is_answered && <span>&#10004;</span>}
-                  </span>
-                )}
-                {(question.answer_id && question.is_accepted) && (
-                  <span className={'question-meta-token question-tag' + (question.is_accepted ? ' question-answered' : '')}>
-                    {question.is_accepted && 'Accepted '}
-                    {question.is_accepted && <span>&#10004;</span>}
-                  </span>
-                )}
-                <button onClick={() => props.handleClickUser(question.owner.user_id)} className='question-meta-token question-user-token question-tag'>
-                  {question.owner.display_name}
-                </button>
-              </div>
-              <div className='question-tag hover-underline' dangerouslySetInnerHTML={{ __html: question.title}} onClick={() => props.handleClickTitle(question.question_id)} >
-              </div>
+              <span onClick={() => props.handleClickUser(question.owner.user_id)} className='question-user-token'>
+                {question.owner.display_name}
+              </span>
+              <span>
+                &nbsp;&nbsp;•&nbsp;&nbsp;{question.creation_date}
+              </span>
+            </div>
+            <div className='question-tag hover-underline' dangerouslySetInnerHTML={{ __html: question.title }} onClick={() => props.handleClickTitle(question.question_id)} >
             </div>
             <div>
               {question.tags.map((tag, index) => {
                 return (
-                  <span key={index} className='question-meta-token question-tag'>
+                  <span key={index} className='question-meta-token'>
                     {tag}
                   </span>
                 )
               })}
             </div>
-            <span>
-              {question.creation_date}
-            </span>
+            <div>
+              <span className='question-meta-token question-counter-token'>
+                {question.score + ' votes'}
+              </span>
+              {!question.answer_id && (
+                <span className={'question-meta-token question-counter-token' + (question.is_answered ? ' question-answered' : '')}>
+                  {question.answer_count + ' answers '}
+                  {question.is_answered && <span>&#10004;</span>}
+                </span>
+              )}
+              {(question.answer_id && question.is_accepted) && (
+                <span className={'question-meta-token question-counter-token' + (question.is_accepted ? ' question-answered' : '')}>
+                  {question.is_accepted && 'Accepted '}
+                  {question.is_accepted && <span>&#10004;</span>}
+                </span>
+              )}
+            </div>
           </div>
         )
-      })} 
+      })}
     </div>
   )
 }

@@ -4,7 +4,7 @@ import '../App.css';
 function Post(props) {
   return (
     <div id='post-containter'>
-      <button onClick={() => props.setCurrentPost(false)} className='question-meta-token question-user-token'>
+      <button onClick={() => props.setCurrentPost(false)} className='button-style'>
         Back
       </button>
       <h2 id='post-title-style' dangerouslySetInnerHTML={{ __html: props.currentPost.title }}></h2>

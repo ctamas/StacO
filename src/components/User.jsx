@@ -6,19 +6,19 @@ function User(props) {
   return (
     <div id='user-container'>
       <div id='user-container-inner'>
-        <button onClick={() => props.handleClickUser('')} className='question-meta-token question-user-token'>
+        <button onClick={() => props.handleClickUser('')} className='button-style'>
           Back
         </button>
         <div id='user-content'>
           <img className='user-info-token' src={props.showUser.profile_image} width='160' high='160' alt='Profile' />
           <div id='user-info-container'>
-            <span className='question-meta-token user-info-token'>
+            <span className='user-info-token'>
               {props.showUser.display_name}
             </span>
-            <span className='question-meta-token user-info-token'>
+            <span className='user-info-token'>
               {'Reputation: ' + props.showUser.reputation}
             </span>
-            <span className='question-meta-token user-info-token'>
+            <span className='user-info-token'>
               {'Registered: ' + props.showUser.creation_date}
             </span>
           </div>
