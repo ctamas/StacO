@@ -8,6 +8,7 @@ import User from './components/User';
 
 function App() {
   const API_KEY = 'HrvsqjzARWE0*0ZfoaXsLw((';
+  const API_URL = 'https://api.stackexchange.com/2.3/';
   const [questions, setQuestions] = React.useState({ items: [] });
   const [searchQuery, setSearchQuery] = React.useState('');
   const [searchInput, setSearchInput] = React.useState('');
@@ -20,7 +21,7 @@ function App() {
   const [pageable, setPageable] = React.useState(false);
 
   const loadResults = (query, page = currentPage) => {
-    fetch("https://api.stackexchange.com/2.3/search?key=" + API_KEY + "&order=desc&sort=activity&intitle=" + query + "&site=stackoverflow&page=" + page)
+    fetch(API_URL + "search?key=" + API_KEY + "&order=desc&sort=activity&intitle=" + query + "&site=stackoverflow&page=" + page)
       .then(res => res.json())
       .then(
         result => {
@@ -42,7 +43,7 @@ function App() {
   };
 
   const loadPost = (query) => {
-    fetch("https://api.stackexchange.com/2.3/questions/" + query + "?order=desc&sort=votes&site=stackoverflow&filter=!6Wfm_gSyiPy)i&key=" + API_KEY)
+    fetch(API_URL + "questions/" + query + "?order=desc&sort=votes&site=stackoverflow&filter=!6Wfm_gSyiPy)i&key=" + API_KEY)
       .then(res => res.json())
       .then(
         result => {
@@ -52,7 +53,7 @@ function App() {
   };
 
   const loadUser = (query) => {
-    fetch("https://api.stackexchange.com/2.3/users/" + query + "?key=" + API_KEY + "&site=stackoverflow")
+    fetch(API_URL + "users/" + query + "?key=" + API_KEY + "&site=stackoverflow")
       .then(res => res.json())
       .then(
         result => {
@@ -67,7 +68,7 @@ function App() {
   };
 
   const loadUserTags = (query) => {
-    fetch("https://api.stackexchange.com/2.3/users/" + query + "/top-tags?site=stackoverflow&key=" + API_KEY)
+    fetch(API_URL + "users/" + query + "/top-tags?site=stackoverflow&key=" + API_KEY)
       .then(res => res.json())
       .then(
         result => {
@@ -77,7 +78,7 @@ function App() {
   };
 
   const loadUserAnswers = (query) => {
-    fetch("https://api.stackexchange.com/2.3/users/" + query + "/answers?order=desc&sort=votes&site=stackoverflow&filter=!nOedRLjK5A&key=" + API_KEY)
+    fetch(API_URL + "users/" + query + "/answers?order=desc&sort=votes&site=stackoverflow&filter=!nOedRLjK5A&key=" + API_KEY)
       .then(res => res.json())
       .then(
         result => {
@@ -90,7 +91,7 @@ function App() {
   };
 
   const loadUserQuestions = (query) => {
-    fetch("https://api.stackexchange.com/2.3/users/" + query + "/questions?order=desc&sort=votes&site=stackoverflow&key=" + API_KEY)
+    fetch(API_URL + "users/" + query + "/questions?order=desc&sort=votes&site=stackoverflow&key=" + API_KEY)
       .then(res => res.json())
       .then(
         result => {
@@ -174,7 +175,7 @@ function App() {
         {!currentPost && !showUser && (
           <div>
             <div className='results-navigator flex-center'>
-              <div id='results-text'>
+              <div className='results-text'>
                 Results: {questions.items && questions.items.length}{pageable && ('+')}
               </div>
               <div id='results-page-text'>

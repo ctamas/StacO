@@ -40,19 +40,19 @@
 
 /* Post */
 
-#post-containter {
+.post-container {
   border: lightgrey 1px solid;
   border-radius: 8px;
   padding: 16px;
   margin: 16px;
 }
 
-#post-title-style {
-  margin: 16px 0 24px;
+.post-margin {
+  margin-left: 16px;
 }
 
-.post-answer {
-  margin-top: 32px;
+#post-title-style {
+  margin: 16px 0 24px;
 }
 
 /* General */
@@ -85,6 +85,10 @@ body {
 
 a {
   color: lightskyblue;
+}
+
+.no-margin {
+  margin: 0 !important;
 }
 
 a:visited {
@@ -277,9 +281,9 @@ code {
 
 /* Results */
 
-#results-text {
+.results-text {
   white-space: nowrap;
-  margin-left: 12px;
+  margin-left: 12px !important;
 }
 
 .results-navigator {
