@@ -34,15 +34,21 @@ function Post(props) {
               <span>
                 &nbsp;&nbsp;•&nbsp;&nbsp;{createReadableDate(answer.creation_date)}
               </span>
-              {(answer.is_accepted) && (
-                <span className={'results-text question-meta-token no-margin' + (answer.is_accepted ? ' question-answered' : '')}>
-                  {answer.is_accepted && 'Accepted '}
-                  {answer.is_accepted && <span>&#10004;</span>}
-                </span>
-              )}
+
             </div>
             <div dangerouslySetInnerHTML={{ __html: answer.body }} key={index}>
             </div>
+            <span className='question-meta-token question-counter-token'>
+              {answer.score + ' votes'}
+            </span>
+            {(answer.is_accepted) && (
+              <React.Fragment>
+                <span className={'question-counter-token question-meta-token no-margin' + (answer.is_accepted ? ' question-answered' : '')}>
+                  {answer.is_accepted && 'Accepted '}
+                  {answer.is_accepted && <span>&#10004;</span>}
+                </span>
+              </React.Fragment>
+            )}
           </div>
         )
       })}

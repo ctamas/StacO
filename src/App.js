@@ -166,7 +166,7 @@ function App() {
       </div>
       <div id='app-content'>
         {currentPost && (
-          <Post setCurrentPost={setCurrentPost} currentPost={currentPost}></Post>
+          <Post setCurrentPost={setCurrentPost} handleClickUser={handleClickUser} currentPost={currentPost}></Post>
         )}
         {!currentPost && !!showUser && (
           <User showUser={showUser} handleClickUser={handleClickUser} handleClickTitle={handleClickTitle} userQuestions={userQuestions} userAnswers={userAnswers} userTags={userTags}>
